@@ -5,8 +5,6 @@ This app is an AI-powered investment agent built with Agno's AI Agent framework 
 - Compare the performance of two stocks
 - Retrieve comprehensive company information
 - Get the latest company news and analyst recommendations
-- Get the latest company news and analyst recommendations
-
 ### How to get Started?
 
 1. Clone the GitHub repository
