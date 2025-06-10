@@ -56,45 +56,47 @@ def load_sp500_tickers():
 df = load_sp500_tickers()
 
 # Optional: Add search functionality
-search = st.text_input("🔍 Search company name or symbol:")
+with st.expander("Expand to search tickers"):
+    search = st.text_input("🔍 Search company name or symbol:")
+    if search:
+        filtered_df = df[df.apply(lambda row: search.lower() in row.astype(str).str.lower().to_string(), axis=1)]
+    else:
+        filtered_df = df
 
-if search:
-    filtered_df = df[df.apply(lambda row: search.lower() in row.astype(str).str.lower().to_string(), axis=1)]
-else:
-    filtered_df = df
-
-st.dataframe(filtered_df, use_container_width=True)
+    st.dataframe(filtered_df, use_container_width=True)
 
 
 col1, col2 = st.columns(2)
+c = st.container()
 with col1:
     stock1 = st.text_input("Enter first stock symbol (e.g. AAPL)")
 with col2:
     stock2 = st.text_input("Enter second stock symbol (e.g. MSFT)")
-    if stock1 or stock2:
-        if not stock1 or not stock2:
-            st.warning("Please enter both stock symbols.")
-        else:
-            st.subheader(f"Comparison Report: {stock1} vs {stock2}")
+if stock1 or stock2:
+    if not stock1 or not stock2:
+        st.warning("⚠️ Please enter both stock symbols.")
+    else:
+        c = st.container()
+        with c:
             with st.spinner(f"Analyzing {stock1} and {stock2}..."):
-                query = f"Compare both the stocks - {stock1} and {stock2} and make a detailed report for an investment trying to invest and compare these stocks"
+                query = f"Compare both the stocks - {stock1} and {stock2} and make a detailed report for an investor trying to choose between them."
                 response = assistant.run(query, stream=False, show_full_reasoning=True)
                 assistant.print_response(query, stream=False, show_full_reasoning=True, stream_intermediate_steps=True)
-                #st.markdown(response.content)
-                with st.container():
-                    st.markdown(
-                        f"""
-                        <div style='
-                            background-color: #1e1e1e;
-                            padding: 20px;
-                            border-radius: 12px;
-                            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-                            text-align: left;
-                            font-size: 16px;
-                            line-height: 1.6;
-                            color: #e0e0e0;
-                        '>
-                            {response.content}</div>
-                        """,
-                        unsafe_allow_html=True
-                    )
+                st.subheader(f"📊 Comparison Report: {stock1} vs {stock2}")
+                st.markdown(
+                    f"""
+                    <div style='
+                        background-color: #1e1e1e;
+                        padding: 20px;
+                        border-radius: 12px;
+                        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+                        text-align: left;
+                        font-size: 16px;
+                        line-height: 1.6;
+                        color: #e0e0e0;
+                        width: 100%;
+                    '>
+                        {response.content}</div>
+                    """,
+                    unsafe_allow_html=True,
+                )
