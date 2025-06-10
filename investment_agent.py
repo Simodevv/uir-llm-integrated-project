@@ -79,7 +79,7 @@ if stock1 or stock2:
         c = st.container()
         with c:
             with st.spinner(f"Analyzing {stock1} and {stock2}..."):
-                query = f"Compare both the stocks - {stock1} and {stock2} and make a detailed report for an investor trying to choose between them."
+                query = f"Compare both the stocks - {stock1} and {stock2} and make a detailed report for an investment trying to invest and compare these stocks"
                 response = assistant.run(query, stream=False, show_full_reasoning=True)
                 assistant.print_response(query, stream=False, show_full_reasoning=True, stream_intermediate_steps=True)
                 st.subheader(f"📊 Comparison Report: {stock1} vs {stock2}")
