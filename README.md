@@ -20,7 +20,7 @@ pip install -r requirements.txt
 ```
 3. Get your Gemini API Key
 
-- Sign up for a [Google AI Studio Account] and obtain your API key.
+- Sign up for a [Google AI Studio](https://aistudio.google.com/app/apikey) Account and obtain your API key.
 
 4. Run the Streamlit App
 ```bash
