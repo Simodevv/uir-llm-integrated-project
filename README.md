@@ -10,8 +10,8 @@ This app is an AI-powered investment agent built with Agno's AI Agent framework 
 1. Clone the GitHub repository
 
 ```bash
-git clone https://github.com/Simodevv/uir-llm-integrated-projects.git
-cd /uir-llm-integrated-projects
+git clone https://github.com/Simodevv/uir-llm-integrated-project.git
+cd /uir-llm-integrated-project
 ```
 2. Install the required dependencies:
 
